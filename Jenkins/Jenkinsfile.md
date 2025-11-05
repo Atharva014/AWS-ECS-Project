@@ -3,8 +3,8 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
-        AWS_ACCOUNT_ID     = '657001761946'
+        AWS_DEFAULT_REGION = 'ap-south-1'
+        AWS_ACCOUNT_ID     = '390403867534'
         IMAGE_TAG          = "1.0.${BUILD_NUMBER}"
         ECR_URI            = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/ecs-test-repo"
         TF_DIR             = 'ecs-terraform'
@@ -20,11 +20,10 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'github-cred',
-                    url: 'https://github.com/vijaygiduthuri/AWS-ECS-Project.git'
+                    url: 'https://github.com/Atharva014/AWS-ECS-Project.git'
             }
         }
-
+        
         stage('Authenticate with AWS and ECR') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials-id']]) {
@@ -111,7 +110,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_DEFAULT_REGION = 'ap-south-1'
         TF_DIR             = 'ecs-terraform'
     }
 
@@ -125,8 +124,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'github-cred',
-                    url: 'https://github.com/vijaygiduthuri/AWS-ECS-Project.git'
+                    url: 'https://github.com/Atharva014/AWS-ECS-Project.git'
             }
         }
 
